@@ -165,41 +165,7 @@ def main_func():
         ##############################
         
 
-        if args.prediction_method == 'naive':
-
-            if args.naive_method == 'all':
-                naive_methods = ['jacard','aa','cn']
-            else:
-                naive_methods = [args.naive_method]
-
-            if args.aggregation == 'all':
-                aggregations = ['mul','avg','min']
-            else:
-                aggregations = [args.aggregation]
-
-            for nm in naive_methods:
-                for agg in aggregations:
-                    args.naive_method = nm
-                    args.aggregation = agg
-
-                    acc_, roc_auc_ = naive_motif_pred(nx.from_scipy_sparse_array(A), test_pos, test_pos_subgraphs,
-                             test_neg, test_neg_subgraphs, 
-                             args.motif, args.motif_f, args.naive_method, args.aggregation, args.prediction_threshold, args.naive_edge_mode)
-
-                    print_results(args, acc_, roc_auc_, sampling_time, 0, 0)
-
-        elif args.prediction_method == 'seal' :
-
-            # pairwise link prediction GNN
-            pairwise_seal(A, test_pos, test_pos_subgraphs, test_neg, test_neg_subgraphs, args, sampling_time)  
-
-
-        elif args.prediction_method == 'seam':
-            acc_result, auc_result, extraction_time, gnn_time = seam(A, test_pos, test_pos_subgraphs, test_neg, test_neg_subgraphs, train_pos,
-                                                                    train_pos_subgraphs, train_neg, train_neg_subgraphs, args)
-                
-            print_results(args, acc_result, auc_result, sampling_time, extraction_time, gnn_time)
-        elif args.prediction_method == 'lhsgnn':
+       if args.prediction_method == 'lhsgnn':
             
             acc_result, auc_result, extraction_time, gnn_time = lhsgnn(A, test_pos, test_pos_subgraphs, test_neg, test_neg_subgraphs, train_pos,
                                                                 train_pos_subgraphs, train_neg, train_neg_subgraphs, args)
