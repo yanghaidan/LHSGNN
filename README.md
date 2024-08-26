@@ -12,7 +12,7 @@ To install all required packages and libraries, you can use the install script.
 `./install.sh`
 
 
-# Run SEAM
+# Run
 
 To train and test LHSGNN on predicting 3-clique on the USAir graph, use the following command:
 
