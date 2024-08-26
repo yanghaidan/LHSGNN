@@ -27,7 +27,7 @@ from models.naive_prediction import *
 from models.pairwise_seal import *
 from models.seam import *
 from utils.data_utils import load_data
-from models.lhsgnn import *
+from lhsgnn import *
 
 import ray
 import psutil
